@@ -124,20 +124,34 @@ employeeRef.on("child_added",function(snapshot, prevChildKey){
             addTd(moment(nextTrain).format("HH:mm"),newTr);
             addTd(tMinutesTillTrain,newTr);
 
-         /*   var deleteBtn = $("<button>");
+            var deleteBtn = $("<button value='"+idTrain+"'>");
             deleteBtn.text("Delete");
             deleteBtn.addClass("btnTrain")
-            deleteBtn.attr("data","1");
+            deleteBtn.attr("data",idTrain);
             $(".employee-table").append(deleteBtn);  
          
-        */
+        
           
         // addTd("<input type",newTr);
         // addTd(tMinutesTillTrain,newTr);
         // addTd(monthlyRate,newTr);
         // addTd(totalBilled,newTr);
 
-})
+
+
+        $('.employee-table').on('click', '.btnTrain', function(){
+            var trainId = $(this).val();
+            console.log(trainId);
+            employeeRef.child(trainId).remove();
+            location.reload();
+
+          });
+
+
+
+
+
+    })
 
 
 
@@ -153,3 +167,4 @@ $(".btnT").on("click",function(){
     console.log("btnT");
 
 })
+
